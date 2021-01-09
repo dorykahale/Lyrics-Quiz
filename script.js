@@ -9,26 +9,20 @@ let shuffledQuestions, currentQuestionIndex
 
 function setTime() {
     const timeEl = document.getElementById("time")
-    secondsLeft = 10
+    secondsLeft = 60
     const timerInterval = setInterval(function() {
     secondsLeft--
     timeEl.textContent = secondsLeft
+    
 
     if(secondsLeft === 0) {
-      // Stops execution of action at set interval
       clearInterval(timerInterval)
-      // Calls function to display score
       showScore();
     }
 
   }, 1000);
 }
 
-// Function to create and append score to score.html
-// function showScore() {
-//     timeEl.textContent = " ";
-  
-//   }
   
 startButton.addEventListener("click", startGame)
 nextButton.addEventListener("click", () => {
@@ -121,5 +115,58 @@ const questions = [
             { text: "House", correct: false},
             { text: "Pets", correct: false}
         ]
+    },    
+    {   
+        question: "Now, I ain't sayin' she a ____ ____.",
+        answers: [
+            { text: "Life Partner", correct: false},
+            { text: "Happy Camper", correct: false},
+            { text: "Gold Digger", correct: true},
+            { text: "Life Guard", correct: false}
+        ]
+    },
+    {   
+        question: "I love it when you call me ___ ___.",
+        answers: [
+            { text: "Love Doctor", correct: false},
+            { text: "Gold Digger", correct: false},
+            { text: "John Doe", correct: false},
+            { text: "Big Poppa", correct: true}
+        ]
     }    
+
 ]
+
+// Function to create and append score to score.html
+var storedScores = JSON.parse(localStorage.getItem("userData"));
+var highScoresArea = document.querySelector("#highScoresList");
+var backBtn = document.querySelector("#backButton");
+var clearBtn = document.querySelector("#clearScores");
+
+
+function displayScores() {
+    if (storedScores !== null) {
+        var scoreList = document.createElement("ol");
+        scoreList.className = "scoreListClass";
+        for (var i = 0; i < storedScores.length; i++) {
+            var initials = storedScores[i].inits;
+            var scores = storedScores[i].userScore
+            var scoreEntry = document.createElement("li");
+            scoreEntry.innerHTML = initials + " - " + scores;
+            scoreList.appendChild(scoreEntry);
+        }
+        highScoresArea.appendChild(scoreList);
+    }
+};
+
+displayScores();
+
+backBtn.addEventListener("click", function () {
+    location.href = "index.html";
+});
+
+clearBtn.addEventListener("click", function () {
+    highScoresArea.innerHTML = "";
+    window.localStorage.clear();
+
+});
