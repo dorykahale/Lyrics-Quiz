@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
-    <script defer src="script.js"></script>
+
     <title>Scores</title>
 </head>
 <body>
-    <div class="container">
-        <h2 id= "highscores" style="text-align: center;">High Scores</h2>
-        <h4 id= "score" style="text-align: center;"></h4>
-        <div id="initials"></div>
+  <div id="wrapper">
+      <div id="currentTime"></div>
+      <div id="questionsDiv">
 
-          </div>
-        </div>
+          <h1>Scores</h1>
+          <ul id="highScore"></ul>
+          <button id="goBack">Go Back</button>
+          <button id="clear" value="reset">Clear Highscore</button>
+      </div>
+  </div>
+
+        <script defer src="scores.js"></script>
 </body>
 </html>
